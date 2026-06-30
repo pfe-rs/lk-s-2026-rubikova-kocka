@@ -1,3 +1,4 @@
+# pocetak implementacije algoritma od nule
 corners = [[0, 0],
            [1, 0],
            [2, 0],
@@ -151,10 +152,10 @@ def D(turning_amount):
     for i in range(turning_amount):
         #promena pozicija coskova
         temp = corners[5]
-        corners[5] = corners[6]
-        corners[6] = corners[7]
-        corners[7] = corners[4]
-        corners[4] = temp
+        corners[5] = corners[4]
+        corners[4] = corners[7]
+        corners[7] = corners[6]
+        corners[6] = temp
         #promena pozijica ivica
         temp = edges[8]
         edges[8] = edges[11]
@@ -189,12 +190,6 @@ def fU(turning_amount):
     B(2)
     R(0)
     L(0)
-    
-    if(turning_amount != 2):
-        if(turning_amount == 1):
-            turning_amount = 0
-        else:
-            turning_amount = 1
     D(turning_amount)
     R(1)
     L(1)
@@ -202,3 +197,25 @@ def fU(turning_amount):
     B(2)
     R(0)
     L(0)
+
+#iz stanja u koordinatu
+#State to Coordinates
+def CornerOrientationStC():
+    coordinate = 0
+    for i in range(7):
+        coordinate = coordinate+( corners[i][1] * 3**(6-i))
+        
+        print("vrednost za dodavanje: ", corners[i][1] * 3**(6-i))
+
+
+    return coordinate
+
+def CornerOrientationCtS(coordinate):
+    for i in range(7):
+        corners[6-i][1] = coordinate%3
+    corners[7][1] = 0
+
+
+    
+
+    
